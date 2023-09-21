@@ -4,7 +4,7 @@ import React from "react";
 const DashboardPage = () => {
   return (
     <div>
-      <UserButton afterSignOutUrl="/" />
+      <p>Dashboard page</p>
     </div>
   );
 };
