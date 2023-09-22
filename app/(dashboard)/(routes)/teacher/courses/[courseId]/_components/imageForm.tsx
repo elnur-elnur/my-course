@@ -2,23 +2,12 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Pencil, Ban, PlusCircle, ImageIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Course } from "@prisma/client";
 import FileUpload from "@/components/fileUpload";
 import Image from "next/image";
@@ -39,16 +28,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { imageUrl: initialData?.imageUrl || "" },
-  });
-  const { isSubmitting, isValid } = form.formState;
-
   const toggleEdit = () => {
-    if (!isValid) {
-      form.reset();
-    }
     setIsEditing((current) => !current);
   };
 
