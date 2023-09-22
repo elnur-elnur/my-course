@@ -8,6 +8,12 @@ body,
   height: 100%;
 }
 
+/* hidden clerk icon from modal, because prime */
+.cl-internal-b3fm6y,
+.cl-userButtonPopoverFooter.cl-internal-uyu30o {
+  display: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -38,6 +44,9 @@ body,
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
+    --success: 142 76% 43%;
+    --success-foreground: 142 83% 93%;
+
     --radius: 0.5rem;
   }
 
@@ -65,6 +74,17 @@ body,
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --success-50: 136 59% 13%;
+    --success-100: 144 61% 20%;
+    --success-200: 143 64% 24%;
+    --success-300: 142 80% 32%;
+    --success-400: 142 71% 45%;
+    --success-500: 142 69% 58%;
+    --success-600: 142 77% 73%;
+    --success-700: 141 79% 85%;
+    --success-800: 142 83% 93%;
+    --success-900: 136 73% 97%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
