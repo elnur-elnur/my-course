@@ -4,15 +4,13 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -66,7 +64,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
       <div className="font-medium flex items-center justify-between">
         Course title
         {!isEditing ? (
-          <Button onClick={toggleEdit} variant="success">
+          <Button onClick={toggleEdit} variant="ghost">
             <Pencil className="w-4 h-4 mr-2" />
             Edit
           </Button>
