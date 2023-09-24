@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import ChaptersList from "./chaptersList";
+import BlockLoader from "@/components/blockLoader";
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };
@@ -61,8 +62,27 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     }
   };
 
+  const onReorder = async (updateData: { id: string; position: number }[]) => {
+    try {
+      setIsUpdating(true);
+
+      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+        list: updateData,
+      });
+
+      toast.success("Chapters reordered");
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+      {isUpdating && <BlockLoader />}
+
       <div className="font-medium flex items-center justify-between">
         Course chapters
         {!isCreating ? (
@@ -118,7 +138,7 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
           {!initialData.chapters.length && <p>No chapters</p>}
           <ChaptersList
             onEdit={() => {}}
-            onReorder={() => {}}
+            onReorder={onReorder}
             items={initialData.chapters || []}
           />
         </div>

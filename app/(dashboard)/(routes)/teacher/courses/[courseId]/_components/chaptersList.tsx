@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 
 interface ChaptersListProps {
   items: Chapter[];
-  onReorder: (updatedData: { id: string; position: number }[]) => void;
+  onReorder: (updateData: { id: string; position: number }[]) => void;
   onEdit: (id: string) => void;
 }
 
@@ -30,12 +30,35 @@ const ChaptersList = ({ items, onReorder, onEdit }: ChaptersListProps) => {
     setChapters(items);
   }, [items]);
 
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return;
+
+    const items = Array.from(chapters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    const startIndex = Math.min(result.source.index, result.destination.index);
+    const endIndex = Math.max(result.source.index, result.destination.index);
+
+    const updatedChapters = items.slice(startIndex, endIndex + 1);
+
+    setChapters(items);
+
+    const bulkUpdatedData = updatedChapters.map((chapter) => ({
+      id: chapter.id,
+      position: items.findIndex((item) => item.id === chapter.id),
+    }));
+
+    onReorder(bulkUpdatedData);
+  };
+
   if (!isMounted) {
     return null;
   }
 
   return (
-    <DragDropContext onDragEnd={() => {}}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="chapters">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
