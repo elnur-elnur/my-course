@@ -6,6 +6,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { boolean } from "zod";
 import ChapterTitleForm from "./_components/chapterTitleForm";
+import ChapterDescriptionForm from "./_components/chapterDescriptionForm";
 
 const ChapterIdPage = async ({
   params,
@@ -69,6 +70,11 @@ const ChapterIdPage = async ({
             </div>
             {/* chapter title form */}
             <ChapterTitleForm
+              initialData={chapter}
+              chapterId={params.chapterId}
+              courseId={params.courseId}
+            />
+            <ChapterDescriptionForm
               initialData={chapter}
               chapterId={params.chapterId}
               courseId={params.courseId}
