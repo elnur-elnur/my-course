@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, auth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "./ui/button";
@@ -11,7 +11,6 @@ const NavbarRoutes = () => {
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
-  // isPlayerPage - when click to course, other sidebar
   const isPlayerPage = pathname?.includes("/chapter");
 
   return (
