@@ -28,6 +28,11 @@ export const Actions = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
+    const rootTimeout = () =>
+      setTimeout(() => {
+        router.push("/teacher/courses");
+      }, 2700);
+
     try {
       setIsLoading(true);
 
@@ -38,13 +43,14 @@ export const Actions = ({
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
         confetti.onOpen();
+        rootTimeout();
       }
-
       router.refresh();
     } catch {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
+      clearTimeout(rootTimeout());
     }
   };
 

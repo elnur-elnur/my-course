@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { UserButton, auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const DashboardPage = () => {
   const { userId } = auth();

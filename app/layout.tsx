@@ -22,6 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           {/* when published course - confetti animation */}
+
           <ConfettiProvider />
           <ToasterProvider />
           {children}
