@@ -16,9 +16,9 @@ interface SearchParams {
 const SearchPage = async ({ searchParams }: SearchParams) => {
   const { userId } = auth();
 
-  // if (!userId) {
-  //   return redirect("/");
-  // }
+  if (!userId) {
+    return redirect("/");
+  }
 
   const categories = await db.category.findMany({
     orderBy: {
@@ -27,12 +27,12 @@ const SearchPage = async ({ searchParams }: SearchParams) => {
   });
 
   const courses = await getCourses({
-    userId, 
-    ...searchParams
+    userId,
+    ...searchParams,
   });
 
   return (
-    <div className="p-6">
+    <div className="p-6 space-y-4">
       <Categories items={categories} />
       <CoursesList items={courses} />
     </div>
