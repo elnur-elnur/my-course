@@ -3,3 +3,4 @@ const CourseIdPage = () => {
 };
 
 export default CourseIdPage;
+  

@@ -22,7 +22,7 @@ const DashboardPage = () => {
       </h2>
 
       {!userId && (
-        <Link href="/teacher/courses" className="mt-4">
+        <Link href="/sign-in" className="mt-4">
           <Button size="sm" variant="outline">
             Teacher mode
           </Button>
